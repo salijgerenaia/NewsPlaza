@@ -1,0 +1,38 @@
+<header class="blog-header">
+  <h1 class="blog-title">NewsPlaza</h1>
+  <p class="blog-subtitle">
+    Where News Meets the World, and Ideas Take Center Stage
+  </p>
+</header>
+
+  <div class="blog-form">
+    <div [ngClass]="{ 'default-hidden': !isAddingPost }">
+      <div>
+        <label for="author">Author</label>
+        <input type="text" id="author-input" #author />
+      </div>
+      <div>
+        <label for="title">Title</label>
+        <input type="text" id="title-input" #title />
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <textarea id="description-input" #desc></textarea>
+      </div>
+      <button class="addBtn" (click)="addElement(author, title, desc)">Add Post</button>
+    </div>
+    <button class="toggle-button" (click)="toggleAddPost()">
+      {{ isAddingPost ? 'Cancel' : 'Add Your Blog' }}
+    </button>
+  </div>
+  
+
+<div class="card-container">
+  <div class="card" *ngFor="let post of postsList">
+    <h2 class="card-title">{{ post.title }}</h2>
+    <p class="card-date">{{ post.date | date: 'short' }}</p>
+    <button class="details" (click)="goToDetailsPage(post.id)">
+      <a>Details</a>
+    </button>
+  </div>
+</div>
